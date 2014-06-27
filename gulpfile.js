@@ -14,11 +14,11 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-    return gulp.src('app/scripts/**/*.js')
-        .pipe($.jshint())
-        .pipe($.jshint.reporter(require('jshint-stylish')))
-        .pipe($.size());
+	    return gulp.src('app/scripts/**/*.coffee')
+	            .pipe($.coffee())
+		            .pipe(gulp.dest('.tmp/scripts'));
 });
+
 
 gulp.task('html', ['styles', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
