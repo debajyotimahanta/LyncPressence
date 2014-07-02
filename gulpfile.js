@@ -2,7 +2,7 @@
 // generated on 2014-06-27 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
-
+var coffeelint = require('gulp-coffeelint');
 // load plugins
 var $ = require('gulp-load-plugins')();
 
@@ -13,12 +13,16 @@ gulp.task('styles', function () {
 	.pipe($.size());
 });
 
-gulp.task('scripts', function () {
+gulp.task('scripts',['lint'], function () {
 	return gulp.src('app/scripts/**/*.coffee')
 	.pipe($.coffee())
-	.pipe(gulp.dest('.tmp/scripts'));
+	.pipe(gulp.dest('app/scripts/output'));
 });
-
+gulp.task('lint', function () {
+	return gulp.src('app/scripts/**/*.coffee')
+	.pipe(coffeelint())
+	.pipe(coffeelint.reporter());
+});
 
 gulp.task('html', ['styles', 'scripts'], function () {
 	var jsFilter = $.filter('**/*.js');
