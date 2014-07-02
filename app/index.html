@@ -29,25 +29,31 @@
                 <li>HTML5 Boilerplate</li>
             </ul>
         </div>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
+        <div class="author" data-user-id="debajyoti.mahanta@aon.net">Debajyoti Mahanta</div>
+        <div class="author" data-user-id="debajyoti.mahanta@aon.net">Debajyoti Mahanta</div>
+       
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="scripts/main.js"></script>
+        
         <!-- endbower -->
         <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
+        
         <!-- endbuild -->
+        <style type="text/css">
+        .sprite-icon-status-incall{
+            background-image: Url('https://www.cites.illinois.edu/mshelp/All/Images/GreenAvailable.png');
+            background-repeat: no-repeat;
+            padding-left: 20px;
+            background-position-y: 3px;
+        }
+        </style>
+        <script type="text/javascript">
+            var x= new Lync();x.InsertLynch($('.author'))
+        </script>
 </body>
 </html>
