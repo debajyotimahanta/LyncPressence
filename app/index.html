@@ -29,14 +29,14 @@
                 <li>HTML5 Boilerplate</li>
             </ul>
         </div>
-        <div class="author" data-user-id="debajyoti.mahanta@aon.net">Debajyoti Mahanta</div>
+        <div class="author" data-user-id="anjan.patel@aon.net">Anjan Patel</div>
         <div class="author" data-user-id="debajyoti.mahanta@aon.net">Debajyoti Mahanta</div>
        
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="scripts/main.js"></script>
+        <script src="scripts/output/main.js"></script>
         
         <!-- endbower -->
         <!-- endbuild -->
@@ -44,16 +44,9 @@
         <!-- build:js scripts/main.js -->
         
         <!-- endbuild -->
-        <style type="text/css">
-        .sprite-icon-status-incall{
-            background-image: Url('https://www.cites.illinois.edu/mshelp/All/Images/GreenAvailable.png');
-            background-repeat: no-repeat;
-            padding-left: 20px;
-            background-position-y: 3px;
-        }
-        </style>
-        <script type="text/javascript">
-            var x= new Lync();x.InsertLynch($('.author'))
+               <script type="text/javascript">
+            	var x= new Lync();
+		x.InsertLyncs();
         </script>
 </body>
 </html>

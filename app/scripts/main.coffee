@@ -1,72 +1,122 @@
-﻿class  Lync
-  nameCtrl=null
-  GetLyncPresenceString:(status) ->
-    switch status
-        when 0 then return "avaliabled"
-        when 1 then return "offline"
-        when 2,4,16 then return "away"
-        when 3,5 then return "incall"
-        when 6,7,8,10 then return "busy"
-        when 9,15 then return "donotdisturb"
-        else return "busy"
-  SetImageClassStatus: (liTag,status )->
-     (liTag).addClass "sprite-icon-status-#{this.GetLyncPresenceString(status)}"
-     return
-  OnStatusChange : (name, status, id) ->
-    tags = $(".author").filter(->
-      $(this).attr("data-user-id") is name
-    )
-    tags.each ->
-      SetImageClassStatus this,status
+﻿(->
+  window.Lync = (->
+    Lync = ->
+    nameCtrl = undefined
+    nameCtrl = null
+    Lync.GetLyncPresenceString = (status) ->
+      switch status
+        when 0
+          "avaliabled"
+        when 1
+          "offline"
+        when 2, 4, 16
+          "away"
+        when  5
+          "incall"
+        when 3,6, 7, 8, 10
+          "busy"
+        when 9, 15
+          "donotdisturb"
+        else
+          "busy"
+    Lync.GetNameCtrl= ->
+      return nameCtrl
+    Lync.SetImageClassStatus = (liTag, status) ->
+      liTag.addClass "sprite-icon-status-" + (@GetLyncPresenceString(status))
       return
-    return
-  ShowLyncPresencePopup : ( target) ->
-    userName=$(target).attr('data-user-id')
-    return  unless nameCtrl
-    eLeft = $(target).offset().left
-    x = eLeft - $(window).scrollLeft()
-    eTop = $(target).offset().top
-    y = eTop - $(window).scrollTop()
-    nameCtrl.ShowOOUI userName, 0, x, y
-    return
-  HideLyncPresencePopup : ->
-    return  unless nameCtrl
-    window.Lync.GetNameCtrl().HideOOUI()
-    return
-  InsertLynch : (author) ->
-    that=this
 
-    authorId = (author).attr("data-user-id")
-    try
-      nameCtrl = new ActiveXObject("Name.NameCtrl.1")
-    catch err 
-        nameCtrl= that.CreateNPApiOnWindowsPlugin("application/x-sharepoint-uc")
-    if nameCtrl.PresenceEnabled
-      nameCtrl.OnStatusChange =that.OnStatusChange 
-    return
+    Lync::OnStatusChange = (name, status, id) ->
+      that = this
+      tags = undefined
+      tags = $(".author").filter(->
+        $(this).attr("data-user-id") is name
+      )
+      tags.each ->
+        Lync.SetImageClassStatus $(this), status
+        $(this).mouseover ->
+          Lync.ShowLyncPresencePopup(this)
+          return
+        $(this).mouseleave ->
+          console.log('out')
+          Lync.HideLyncPresencePopup()
+          return
+        return
 
-  CreateNPApiOnWindowsPlugin:(b)->
-    c = null
-    if IsSupportedNPApiBrowserOnWin()
+      return
+
+    Lync.ShowLyncPresencePopup = (target) ->
+      eLeft = undefined
+      eTop = undefined
+      userName = undefined
+      x = undefined
+      y = undefined
+      userName = $(target).attr("data-user-id")
+      return  unless nameCtrl
+      eLeft = $(target).offset().left
+      x = eLeft - $(window).scrollLeft()
+      eTop = $(target).offset().top
+      y = eTop - $(window).scrollTop()
+      nameCtrl.ShowOOUI userName, 0, x, y
+      return
+
+    Lync.HideLyncPresencePopup = ->
+      return  unless nameCtrl
+      window.Lync.GetNameCtrl().HideOOUI()
+      return
+    Lync::InsertLyncs= ->
+      that=this
+      $('.author').each (index, item) ->
+        that.InsertLync $(item)
+        return
+      return
+
+    Lync::InsertLync = (author) ->
+      authorId = undefined
+      err = undefined
+      that = undefined
+      that = this
+      authorId = author.attr("data-user-id")
       try
-        c = document.getElementById(b)
-        if not Boolean(c) and IsNPAPIOnWinPluginInstalled(b)
-          a = document.createElement("object")
-          a.id = b
-          a.type = b
-          a.width = "0"
-          a.height = "0"
-          a.style.setProperty "visibility", "hidden", ""
-          document.body.appendChild a
-          c = document.getElementById(b)
-      catch d
-            c = null
-          c
-  IsNPAPIOnWinPluginInstalled : (a) ->
-    Boolean(navigator.mimeTypes) and navigator.mimeTypes[a] and navigator.mimeTypes[a].enabledPlugin
-  IsSupportedNPApiBrowserOnWin : ->
-    true # SharePoint does this: IsSupportedChromeOnWin() || IsSupportedFirefoxOnWin()
-    
-     
-module.exports = Lync unless typeof module is ""
+        nameCtrl = new ActiveXObject("Name.NameCtrl.1")
+      catch _error
+        err = _error
+        nameCtrl = that.CreateNPApiOnWindowsPlugin("application/x-sharepoint-uc")
+      if nameCtrl.PresenceEnabled
+        nameCtrl.OnStatusChange = that.OnStatusChange
+        nameCtrl.GetStatus authorId, "1"
+      return
 
+    Lync::CreateNPApiOnWindowsPlugin = (b) ->
+      a = undefined
+      c = undefined
+      d = undefined
+      c = null
+      that = this
+      if that.IsSupportedNPApiBrowserOnWin()
+        try
+          c = document.getElementById(b)
+          if not Boolean(c) and that.IsNPAPIOnWinPluginInstalled(b)
+            a = document.createElement("object")
+            a.id = b
+            a.type = b
+            a.width = "0"
+            a.height = "0"
+            a.style.setProperty "visibility", "hidden", ""
+            document.body.appendChild a
+            c = document.getElementById(b)
+        catch _error
+          d = _error
+          c = null
+        c
+
+    Lync::IsNPAPIOnWinPluginInstalled = (a) ->
+      Boolean(navigator.mimeTypes) and navigator.mimeTypes[a] and navigator.mimeTypes[a].enabledPlugin
+
+    Lync::IsSupportedNPApiBrowserOnWin = ->
+      true
+
+    Lync
+  )()
+  module.exports = Lync  if typeof module isnt ""
+  return
+).call this
