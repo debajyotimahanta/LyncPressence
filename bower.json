@@ -1,8 +1,21 @@
 {
-  "name": "lync",
-  "private": true,
-  "dependencies": {
-    "jquery": "~1.11.0"
-  },
-  "devDependencies": {}
+    "name": "Lync Presence Awareness Plugin",
+    "version": "0.1.0",
+    "main": "dist/scripts/main.js",
+    "ignore": [
+        "app",
+	".gitignore",
+	".gitattirbutes"
+        ".jshintignore",
+        ".jshintrc",
+        "bower.json",
+        "gruntfile.js",
+        "package.json",
+        "README.md"
+    ],
+    "dependencies": {
+        "jquery": ">=1.10.2",
+    },
+    "devDependencies": {
+    }
 }
