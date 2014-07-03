@@ -1,7 +1,7 @@
-.gitignore
+*/.DS_Store
+.DS_Store
 .gitattributes
 node_modules
-dist
 .tmp
 .sass-cache
 app/bower_components
