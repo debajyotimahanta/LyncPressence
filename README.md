@@ -1,5 +1,9 @@
 #Lync Presence Awareness 
-This plugin will include presence awareness for a given person field. It works on IE, Chrome and Firefox. In order for this plugin to work. 
+This plugin will include presence awareness for a given person field. It works on IE, Chrome and Firefox. In order for this plugin to work. To install this plugin you can use bower
+```javascript
+bower install LyncPresencePlugin
+```
+
 ### Requirments
 + You must have Lync client installed.
 + Needs jquery
@@ -19,6 +23,3 @@ var x= new Lync();
 x.InsertLyncs();
 ```
 In order to see a sample setup, please refer to index.html file.
-=======
-LyncPressence
-=============
