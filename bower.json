@@ -22,7 +22,7 @@
     "tests",
     "app",
     ".gitignore",
-	".gitattirbutes"
+	".gitattirbutes",
     ".jshintignore",
     ".jshintrc",
     "bower.json",
