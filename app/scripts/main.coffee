@@ -117,6 +117,4 @@
 
     Lync
   )()
-  module.exports = Lync  if typeof module isnt ""
-  return
 ).call this
