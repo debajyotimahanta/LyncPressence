@@ -27,3 +27,6 @@ var x= new Lync();
 x.InsertLyncs();
 ```
 In order to see a sample setup, please refer to index.html file.
+## Copyright and license
+
+Code and documentation The MIT License (MIT) Copyright (c) 2014 debajyotimahanta
