@@ -22,6 +22,8 @@
     Lync.GetNameCtrl= ->
       return nameCtrl
     Lync.SetImageClassStatus = (liTag, status) ->
+      liTag.removeClass()
+      liTag.addClass "author"
       liTag.addClass "sprite-icon-status-" + (@GetLyncPresenceString(status))
       return
 

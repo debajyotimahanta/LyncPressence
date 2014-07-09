@@ -35,6 +35,8 @@
         return nameCtrl;
       };
       Lync.SetImageClassStatus = function(liTag, status) {
+        liTag.removeClass();
+        liTag.addClass("author");
         liTag.addClass("sprite-icon-status-" + (this.GetLyncPresenceString(status)));
       };
       Lync.prototype.OnStatusChange = function(name, status, id) {
