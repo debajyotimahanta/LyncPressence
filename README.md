@@ -3,6 +3,10 @@ This plugin will include presence awareness for a given person field. It works o
 ```javascript
 bower install LyncPresencePlugin
 ```
+Or you can install it via [Nuget](http://www.nuget.org/packages/LyncPresencePlugin/)
+```sh
+PM > Install-Package LyncPresencePlugin
+```
 
 ### Requirments
 + You must have Lync client installed.
