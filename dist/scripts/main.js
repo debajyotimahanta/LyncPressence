@@ -52,7 +52,7 @@
             Lync.ShowLyncPresencePopup(this);
           });
           $(this).mouseleave(function() {
-            console.log('out');
+            
             Lync.HideLyncPresencePopup();
           });
         });
