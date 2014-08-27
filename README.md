@@ -14,7 +14,7 @@ PM > Install-Package LyncPresencePlugin
 + You will need to include the main.css and images library in the styles folder.
 
 ### Overview
-The way it works is you need to declare your class in the following name where presence needs to show in the following manner
+The way it works is you need to declare your html in the following name where presence needs to show up
 ```html
 <div class="author" data-user-id="john.doe@xxx.net">John Doe</div>
 ```
@@ -27,3 +27,6 @@ var x= new Lync();
 x.InsertLyncs();
 ```
 In order to see a sample setup, please refer to index.html file.
+## Copyright and license
+
+Code and documentation The MIT License (MIT) Copyright (c) 2014 debajyotimahanta
