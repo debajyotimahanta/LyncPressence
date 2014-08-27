@@ -52,7 +52,6 @@
             Lync.ShowLyncPresencePopup(this);
           });
           $(this).mouseleave(function() {
-            
             Lync.HideLyncPresencePopup();
           });
         });
